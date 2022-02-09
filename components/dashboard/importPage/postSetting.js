@@ -14,7 +14,7 @@ import InputTags from "./inputTag";
 import { useState, useContext, useEffect } from "react";
 import { DataContext, useData } from "../../../context/datacontext";
 const IOSSwitch = styled((props) => (
-  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+  <Switch focusVisibleClassName='.Mui-focusVisible' disableRipple {...props} />
 ))(({ theme }) => ({
   width: 42,
   height: 26,
@@ -82,13 +82,12 @@ const PostSetting = ({ isLoading }) => {
         postSites.push(site);
       }
     }
-    var setPostSites = new Set(postSites);
-    setApiData({ ...apiData, postTo: setPostSites });
+    let setPostSites = new Set(postSites);
     console.log(setPostSites);
+    setApiData({ ...apiData, postTo: Array.from(setPostSites) });
   }, [check]);
 
   const handleChange = (event) => {
-    console.log("working");
     const name = event.target.name;
     setCheck({
       ...check,
@@ -104,67 +103,67 @@ const PostSetting = ({ isLoading }) => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Typography variant="h5" fontWeight="bold">
+      <Typography variant='h5' fontWeight='bold'>
         Post settings
       </Typography>
       <Grid container spacing={4} sx={{ padding: "4rem 0" }}>
         <Grid item md={6} xs={12}>
-          <Typography variant="h6" fontWeight="bold">
+          <Typography variant='h6' fontWeight='bold'>
             Post to{" "}
           </Typography>
           <Stack sx={{ margin: "4rem 2rem" }} gap={4}>
             <Stack
-              direction="row"
+              direction='row'
               sx={{ alignItems: "center", justifyContent: "space-between" }}
             >
               <Box sx={{ display: "flex" }}>
                 <Box sx={{ margin: "0rem 1rem 0 0" }}>
                   <MediumIcon />
                 </Box>
-                <Typography fontWeight="500" variant="h6">
+                <Typography fontWeight='500' variant='h6'>
                   Medium
                 </Typography>
               </Box>
-              <IOSSwitch name="medium" onChange={handleChange} />
+              <IOSSwitch name='medium' onChange={handleChange} />
             </Stack>
             <Stack
-              direction="row"
+              direction='row'
               sx={{ alignItems: "center", justifyContent: "space-between" }}
             >
               <Box sx={{ display: "flex" }}>
                 <Box sx={{ margin: "0rem 1rem 0 0" }}>
                   <HashnodeIcon />
                 </Box>
-                <Typography fontWeight="500" variant="h6">
+                <Typography fontWeight='500' variant='h6'>
                   Hashnode
                 </Typography>
               </Box>
-              <IOSSwitch name="hashnode" onChange={handleChange} />
+              <IOSSwitch name='hashnode' onChange={handleChange} />
             </Stack>
             <Stack
-              direction="row"
+              direction='row'
               sx={{ alignItems: "center", justifyContent: "space-between" }}
             >
               <Box sx={{ display: "flex" }}>
                 <Box sx={{ margin: "0rem 1rem 0 0" }}>
                   <DevIcon />
                 </Box>
-                <Typography fontWeight="500" variant="h6">
+                <Typography fontWeight='500' variant='h6'>
                   Dev
                 </Typography>
               </Box>
-              <IOSSwitch name="dev" onChange={handleChange} />
+              <IOSSwitch name='dev' onChange={handleChange} />
             </Stack>
           </Stack>
         </Grid>
         <Grid item md={6} xs={12} sx={{}}>
-          <Typography variant="h6">Other settings </Typography>
+          <Typography variant='h6'>Other settings </Typography>
 
           <Stack sx={{ margin: "2rem 2rem" }}>
             <Box>
               <Typography
-                variant="h6"
-                fontWeight="medium"
+                variant='h6'
+                fontWeight='medium'
                 sx={{ margin: "1rem 0" }}
               >
                 Tags
@@ -174,17 +173,17 @@ const PostSetting = ({ isLoading }) => {
             </Box>
             <Box>
               <Typography
-                variant="h6"
-                fontWeight="medium"
+                variant='h6'
+                fontWeight='medium'
                 sx={{ margin: "1rem 0" }}
               >
                 Canonical link
               </Typography>
 
               <TextField
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-                size="small"
+                size='small'
                 onChange={handleCanonical}
                 value={canonUrl}
               />

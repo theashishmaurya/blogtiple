@@ -2,6 +2,9 @@ const axios = require("axios");
 const handler = async (event, context) => {
   console.log("Received event:", event);
   // call database for below data
+  await axios.get("http://localhost:8888/api/getScheduledPost").then((data) => {
+    console.log(data);
+  });
   const data = {
     title: "Test Blog",
     contentMarkdown: "this is test markdown for schedule function",
