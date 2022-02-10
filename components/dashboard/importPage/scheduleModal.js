@@ -24,14 +24,14 @@ const style = {
 };
 
 const ScheduleModal = ({ open, handleClose, handleOpen }) => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(new Date());
   const { SchedulePost } = useData();
   const { currentUser } = useAuth();
 
   const handleSubmit = () => {
     SchedulePost(value, currentUser.uid)
       .then((data) => {
-        console.log(data.data);
+        handleClose();
       })
       .catch((Err) => console.log(Err));
   };
