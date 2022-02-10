@@ -33,18 +33,26 @@ export const DataProvider = ({ children }) => {
 
   const SchedulePost = async (scheduledDate, userId) => {
     const uuid = uuidv4();
-
-    const data = {
+    const postData = {
       id: uuid,
       post: JSON.stringify(apiData),
       date: scheduledDate,
       userid: userId,
     };
-    // return await updateDoc(doc(db, "scheduledpost", userId), {
-    //   post: arrayUnion(data),
-    // });
-    return await updateDoc(doc(db, "scheduledpost", userId), {
-      post: arrayUnion(data),
+
+    return await getDoc(doc(db, "scheduledpost", userId)).then(async (data) => {
+      console.log(data.exists(), "Existed Data");
+      if (data.exists()) {
+        console.log("Exists");
+        return await updateDoc(doc(db, "scheduledpost", userId), {
+          post: arrayUnion(postData),
+        });
+      } else {
+        console.log("Does Not Exits");
+        return await setDoc(doc(db, "scheduledpost", userId), {
+          post: arrayUnion(postData),
+        });
+      }
     });
   };
   const AddApiKey = {
@@ -79,6 +87,10 @@ export const DataProvider = ({ children }) => {
     return await getDoc(doc(db, "users", id));
   };
 
+  const GetScheduledPost = async (id) => {
+    return await getDoc(doc(db, "scheduledpost", id));
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -107,6 +119,7 @@ export const DataProvider = ({ children }) => {
     SchedulePost,
     sendResponse,
     setResponse,
+    GetScheduledPost,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
