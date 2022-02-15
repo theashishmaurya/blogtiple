@@ -72,7 +72,7 @@ function PostToMedium(
     publishStatus: "public",
     // publishStatus: "draft",
   });
-  console.log("Apikey****:", apiKey);
+
   const config = {
     method: "post",
     url: `https://api.medium.com/v1/users/${authorId}/posts`,

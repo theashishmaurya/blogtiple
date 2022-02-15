@@ -26,16 +26,16 @@ export default async function getScheduledPost(req, res) {
 
           const getUserData = await GetUserDetails(userId);
 
-          const hashnodeKey = getUserData.data().hashnodeKey;
-          const devKey = getUserData.data().devKey;
-          const mediumKey = getUserData.data().mediumKey;
+          const hashnode = getUserData.data().hashnodeKey;
+          const dev = getUserData.data().devKey;
+          const medium = getUserData.data().mediumKey;
           let response = {
             userId,
             postData,
             key: JSON.stringify({
-              hashnodeKey,
-              devKey,
-              mediumKey,
+              hashnode,
+              dev,
+              medium,
             }),
             date,
           };

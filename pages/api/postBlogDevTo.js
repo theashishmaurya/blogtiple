@@ -3,14 +3,18 @@ import { DecryptpayLoad } from "../../components/lib/encoding";
 
 export default function handler(req, res) {
   const apiResponses = req.body.body.body;
-  // const tokenValue = req.body.body.token;
-  // const keyValue = req.body.body.key;
+  const tokenValue = req.body.body.token;
+  const keyValue = req.body.body.key;
   const { title, contentMarkdown, coverImage, tags, canonicalURL } =
     apiResponses;
-  // const apiKey = DecryptpayLoad(tokenValue, keyValue);
-  const apiKey = process.env.NEXT_PUBLIC_DEVTO_APIKEY;
+  const apiKey = DecryptpayLoad(tokenValue, keyValue);
+
   const modifyTags = [];
-  for (let i of tags) {
+  var tempTags = tags;
+  if (tempTags.length > 4) {
+    tempTags = tempTags.slice(0, 4);
+  }
+  for (let i of tempTags) {
     let tagString = removeSpace(i);
     modifyTags.push(tagString);
   }
@@ -19,7 +23,7 @@ export default function handler(req, res) {
       title: title,
       main_image: coverImage,
       body_markdown: contentMarkdown,
-      published: false,
+      published: true,
       tags: modifyTags,
       canonical_url: canonicalURL,
     },
