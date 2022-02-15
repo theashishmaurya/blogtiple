@@ -1,2 +1,6 @@
 [functions."schedule"]
 schedule="@daily"
+
+[build.environment]
+  NODE_VERSION = "14.17.4"
+  NPM_VERSION = "6.14.14"
