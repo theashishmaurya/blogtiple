@@ -30,13 +30,14 @@ const Onboard = () => {
   const handleEmailSingUp = (e) => {
     e.preventDefault();
     EmailLinkSingUp(emailRef.current.value)
-      .then(() =>
+      .then(() => {
+        emailRef.current.value = "";
         Swal.fire({
           title: "Success",
           text: "Check your email for the login link",
           icon: "success",
-        })
-      )
+        });
+      })
       .catch((err) => {
         Swal.fire({
           title: "Something went wrong",

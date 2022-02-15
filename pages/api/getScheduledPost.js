@@ -3,7 +3,7 @@ import { async } from "@firebase/util";
 import { auth, db } from "../../firebase/firebase";
 
 const GetUserDetails = async (id) => {
-  console.log(id);
+  // console.log(id);
   return await getDoc(doc(db, "users", id));
 };
 export default async function getScheduledPost(req, res) {
@@ -21,8 +21,8 @@ export default async function getScheduledPost(req, res) {
       return Promise.all(
         post.map(async (post) => {
           const userId = post.userid;
-          const date = post.date;
-          const postData = JSON.parse(post.post);
+          const date = JSON.stringify(post.date);
+          const postData = post.post;
 
           const getUserData = await GetUserDetails(userId);
 
@@ -32,11 +32,11 @@ export default async function getScheduledPost(req, res) {
           let response = {
             userId,
             postData,
-            key: {
+            key: JSON.stringify({
               hashnodeKey,
               devKey,
               mediumKey,
-            },
+            }),
             date,
           };
 
@@ -47,33 +47,4 @@ export default async function getScheduledPost(req, res) {
   );
 
   res.send(response);
-
-  //     for (let i = 0; i < postArray.length; i++) {
-  //       const date = postArray[i].date;
-  //       const userId = postArray[i].userid;
-  //       const postData = JSON.parse(postArray[i].post);
-  //       const getUserData = await GetUserDetails(userId);
-
-  //       const hashnodeKey = getUserData.data().hashnodeKey;
-  //       const devKey = getUserData.data().devKey;
-  //       const mediumKey = getUserData.data().mediumKey;
-  //       let response = {
-  //         userId,
-  //         postData,
-  //         key: {
-  //           hashnodeKey,
-  //           devKey,
-  //           mediumKey,
-  //         },
-  //         date,
-  //       };
-
-  //       arr.push(response);
-  //     }
-
-  //     return arr;
-  //   };
-
-  // console.log("Outer");
-  // // res.send("Data");
 }

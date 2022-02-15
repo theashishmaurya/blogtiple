@@ -65,6 +65,13 @@ export default function DashboardLayout({ children }) {
                 },
               },
               {
+                text: "Schedule",
+                icon: <ScheduleIcon color='primary' />,
+                onClick: () => {
+                  router.push("/dashboard/scheduledpost");
+                },
+              },
+              {
                 text: (
                   <Badge badgeContent={"WIP"} color='error'>
                     Write Blog{" "}
@@ -82,17 +89,6 @@ export default function DashboardLayout({ children }) {
                   </Badge>
                 ),
                 icon: <TrendingUpIcon color='primary' />,
-                onClick: () => {
-                  router.push("/dashboard/importblog");
-                },
-              },
-              {
-                text: (
-                  <Badge badgeContent={"WIP"} color='error'>
-                    Schedule
-                  </Badge>
-                ),
-                icon: <ScheduleIcon color='primary' />,
                 onClick: () => {
                   router.push("/dashboard/importblog");
                 },
