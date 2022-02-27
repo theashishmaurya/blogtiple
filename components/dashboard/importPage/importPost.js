@@ -24,6 +24,31 @@ const ImportPost = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { title, coverImage, contentMarkdown, tags } = apiData;
+  const [canonUrl, setCanonUrl] = useState("");
+  const [check, setCheck] = useState({
+    medium: false,
+    hashnode: false,
+    dev: false,
+  });
+  const [tags_, SetTags] = useState([]);
+
+  const handleSuccess = () => {
+    setApiData({
+      title: undefined,
+      contentMarkdown: undefined,
+      coverImage: undefined,
+      tags: [],
+      postTo: [],
+    });
+
+    setCanonUrl("");
+    setCheck({
+      medium: false,
+      hashnode: false,
+      dev: false,
+    });
+    SetTags([]);
+  };
 
   useEffect(() => {}, [apiData]);
   const blogContent = apiData.contentMarkdown;
@@ -38,6 +63,12 @@ const ImportPost = () => {
             .then((response) => {
               console.log(response.data.message);
               setResponse({ ...sendResponse, medium: response.data.message });
+              Swal.fire({
+                title: "success",
+                text: `Posted to Medium`,
+                icon: "success",
+              });
+              handleSuccess();
             })
             .catch(function (error) {
               console.log(error);
@@ -47,6 +78,12 @@ const ImportPost = () => {
             .then((response) => {
               console.log(response.data.message);
               setResponse({ ...sendResponse, dev: response.data.message });
+              Swal.fire({
+                title: "success",
+                text: `Posted to Dev.to`,
+                icon: "success",
+              });
+              handleSuccess();
             })
             .catch(function (error) {
               console.log(error);
@@ -56,6 +93,12 @@ const ImportPost = () => {
             .then((response) => {
               console.log(response.data.message);
               setResponse({ ...sendResponse, hashnode: response.data.message });
+              Swal.fire({
+                title: "success",
+                text: `Posted to Hashnode`,
+                icon: "success",
+              });
+              handleSuccess();
             })
             .catch(function (error) {
               console.log(error);
@@ -64,13 +107,6 @@ const ImportPost = () => {
         apiData.contentMarkdown = blogContent;
       }
     }
-    Swal.fire({
-      title: "Status",
-      text: `medium:${sendResponse.medium}\n
-          hashnode:${sendResponse.hashnode}\n
-          dev:${sendResponse.dev}`,
-      icon: "info",
-    });
   };
 
   return (
@@ -143,7 +179,15 @@ const ImportPost = () => {
         }}
         elevation={2}
       >
-        <PostSetting isLoading={isLoading} />
+        <PostSetting
+          isLoading={isLoading}
+          canonUrl={canonUrl}
+          check={check}
+          setCanonUrl={setCanonUrl}
+          setCheck={setCheck}
+          tags_={tags_}
+          SetTags={SetTags}
+        />
         <Box sx={{ flexGrow: 1, justifyContent: "end", display: "flex" }}>
           <ScheduleModal
             open={open}

@@ -64,14 +64,15 @@ const IOSSwitch = styled((props) => (
   },
 }));
 
-const PostSetting = ({ isLoading }) => {
-  const [canonUrl, setCanonUrl] = useState("");
-  const [check, setCheck] = useState({
-    medium: false,
-    hashnode: false,
-    dev: false,
-  });
-
+const PostSetting = ({
+  isLoading,
+  check,
+  setCanonUrl,
+  canonUrl,
+  setCheck,
+  tags_,
+  SetTags,
+}) => {
   const values = useData();
   const { apiData, setApiData } = values;
 
@@ -124,7 +125,11 @@ const PostSetting = ({ isLoading }) => {
                   Medium
                 </Typography>
               </Box>
-              <IOSSwitch name='medium' onChange={handleChange} />
+              <IOSSwitch
+                name='medium'
+                onChange={handleChange}
+                checked={check.medium}
+              />
             </Stack>
             <Stack
               direction='row'
@@ -138,7 +143,11 @@ const PostSetting = ({ isLoading }) => {
                   Hashnode
                 </Typography>
               </Box>
-              <IOSSwitch name='hashnode' onChange={handleChange} />
+              <IOSSwitch
+                name='hashnode'
+                onChange={handleChange}
+                checked={check.hashnode}
+              />
             </Stack>
             <Stack
               direction='row'
@@ -152,7 +161,11 @@ const PostSetting = ({ isLoading }) => {
                   Dev
                 </Typography>
               </Box>
-              <IOSSwitch name='dev' onChange={handleChange} />
+              <IOSSwitch
+                name='dev'
+                onChange={handleChange}
+                checked={check.dev}
+              />
             </Stack>
           </Stack>
         </Grid>
@@ -169,7 +182,11 @@ const PostSetting = ({ isLoading }) => {
                 Tags
               </Typography>
 
-              <InputTags isLoading={isLoading} />
+              <InputTags
+                isLoading={isLoading}
+                tags_={tags_}
+                SetTags={SetTags}
+              />
             </Box>
             <Box>
               <Typography

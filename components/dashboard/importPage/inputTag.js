@@ -38,11 +38,10 @@ const Tags = ({ data, handleDelete }) => {
   );
 };
 
-export default function InputTags({ isLoading }) {
+export default function InputTags({ isLoading, tags_, SetTags }) {
   // const [apiData, setApiData] = useContext(DataContext);
   const values = useData();
   const { apiData, setApiData } = values;
-  const [tags_, SetTags] = useState([]);
   const tagRef = useRef();
 
   useEffect(() => {
