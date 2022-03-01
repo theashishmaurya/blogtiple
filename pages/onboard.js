@@ -106,7 +106,7 @@ const Onboard = () => {
             }}
           >
             <Typography variant='h5' fontWeight='bold'>
-              Sing in with secure link{" "}
+              Sign in with secure link{" "}
             </Typography>
             <Box
               component='form'

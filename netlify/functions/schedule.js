@@ -1,9 +1,12 @@
 const axios = require("axios");
 const { connectFirestoreEmulator } = require("firebase/firestore");
+
+const Produrl = "https://blogtiple.com";
+const localUrl = "http://localhost:8888";
 const handler = async (event, context) => {
   console.log("Received event:", event);
   // call database for below data
-  await axios.get("http://localhost:8888/api/getScheduledPost").then((data) => {
+  await axios.get(`${Produrl}/api/getScheduledPost`).then((data) => {
     // console.log(data.data);
 
     data.data.forEach((posts) => {
@@ -37,10 +40,10 @@ const handler = async (event, context) => {
           console.log(postTo);
           postTo.map((blog) => {
             if (blog === "medium") {
-              let content = `<H1>${postData.title}</H1></br> <figure> <img alt = "coverImage" src ="${postData.coverImage}"/></figure> </br>${postData.contentMarkdown}</br><p style="color:#808080;">This blog is posted using <a href="www.blogtiple.com">Blogtiple</a></p>`;
+              let content = `<H1>${postData.title}</H1></br> <figure> <img alt = "coverImage" src ="${postData.coverImage}"/></figure> </br>${postData.contentMarkdown}</br><p style="color:#808080;">This blog is posted using <a target="_blank" href="www.blogtiple.com">Blogtiple</a></p>`;
               postData.contentMarkdown = content;
 
-              axios.post("http://localhost:8888/api/postBlogMedium", {
+              axios.post(`${Produrl}/api/postBlogMedium`, {
                 body: { body: postData, token: keys[blog], key: post.userId },
               });
 
@@ -48,20 +51,20 @@ const handler = async (event, context) => {
             }
 
             if (blog === "dev") {
-              let modifiedContentdev = `${postData.contentMarkdown}</br><p style="color:#808080;">This blog is posted using <a href="www.blogtiple.com">Blogtiple</a></p>`;
+              let modifiedContentdev = `${postData.contentMarkdown}</br><p style="color:#808080;">This blog is posted using <a target="_blank" href="www.blogtiple.com">Blogtiple</a></p>`;
               postData.contentMarkdown = modifiedContentdev;
 
-              axios.post("http://localhost:8888/api/postBlogDevTo", {
+              axios.post(`${Produrl}/api/postBlogDevTo`, {
                 body: { body: postData, token: keys[blog], key: post.userId },
               });
               console.log("posted to dev");
             }
 
             if (blog === "hashnode") {
-              let modifiedContentHashnode = `${postData.contentMarkdown}</br><p style="color:#808080;">This blog is posted using <a href="www.blogtiple.com">Blogtiple</a></p>`;
+              let modifiedContentHashnode = `${postData.contentMarkdown}</br><p style="color:#808080;">This blog is posted using <a target="_blank" href="www.blogtiple.com">Blogtiple</a></p>`;
               postData.contentMarkdown = modifiedContentHashnode;
 
-              axios.post("http://localhost:8888/api/postBlogHashnode", {
+              axios.post(`${Produrl}/api/postBlogHashnode`, {
                 body: { body: postData, token: keys[blog], key: post.userId },
               });
               console.log("posted to hashnode");
