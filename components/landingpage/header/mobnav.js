@@ -4,13 +4,13 @@ import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { GlassMenu } from "../../utils/button";
+import Link from "next/link";
 
 export default function MobNav() {
   const [state, setState] = useState({
@@ -33,29 +33,30 @@ export default function MobNav() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
-      role="presentation"
+      sx={{
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
+        backgroundColor: "#283240",
+        height: "100vh",
+        color: "#ffffff",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "space-between",
+      }}
+      role='presentation'
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
+        {[
+          { text: "Log In", link: "/onboard" },
+          { text: "Sign Up", link: "/onboard" },
+          { text: "features", link: "#features" },
+          { text: "blog", link: "https://blog.blogtiple.com" },
+        ].map((data, index) => (
+          <ListItem button key={data.text}>
+            <Link href={data.link}>
+              <ListItemText primary={data.text} />
+            </Link>
           </ListItem>
         ))}
       </List>
@@ -76,7 +77,7 @@ export default function MobNav() {
                 margin: "0px",
                 borderRadius: "5px",
               }}
-              fontSize="large"
+              fontSize='large'
             />
           </Button>
           <Drawer
