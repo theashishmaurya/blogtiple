@@ -1,8 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#Intro
 
-## Getting Started
+Blogtiple is a cross-blogging application to post your blogs accross the Hashnode,Medium and DEV.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/654e960b-28d3-44fd-8408-88e99515418d/deploy-status)](https://app.netlify.com/sites/elastic-newton-516194/deploys)
+Also you can schedule your post for later date.
+
+## Getting Started with Devlopment
 
 First, run the development server:
 
@@ -20,17 +22,22 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- Post to Hashnode
+- Post to Medium
+- Post to DEV
+- Scheduling your post for later.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployed
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+[![Netlify Status](https://api.netlify.com/api/v1/badges/654e960b-28d3-44fd-8408-88e99515418d/deploy-status)](https://app.netlify.com/sites/elastic-newton-516194/deploys)
 
-## Deploy on Vercel
+[Blogtiple](https://blogtiple.com)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## TO be added features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Advance Analytics
+- Security update
+- More responsive and user friendly UI
+- More platforms.
