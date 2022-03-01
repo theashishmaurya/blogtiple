@@ -1,4 +1,4 @@
-#Intro
+# Intro
 
 Blogtiple is a cross-blogging application to post your blogs accross the Hashnode,Medium and DEV.
 
